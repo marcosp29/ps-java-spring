@@ -18,14 +18,7 @@ public class ProductService {
 	@Autowired
 	private ProductRepository proRepo;
 	
-	public void addProduct(int id, String name, BigDecimal price, short score, String image) {
-		Product product = new Product();
-		product.setId(id); 
-	    product.setName(name);
-	    product.setPrice(price); 
-	    product.setScore(score);
-	    product.setImage(image);
-
+	public void addProduct(Product product) {
 		proRepo.save(product);
 	}
 	
@@ -34,8 +27,8 @@ public class ProductService {
 		return proRepo.save(newProduct);
 	}
 	
-	public void deleteProduct(Product product) {
-		proRepo.delete(product);
+	public void deleteProduct(Integer id) {
+		proRepo.deleteById(id);
 	}
 	
 	public List<Product> orderByAlphabetical(){
@@ -57,4 +50,16 @@ public class ProductService {
 		
 		return listProducts;
 	}
+	
+	/*
+	 * PARA TESTAR A API INSERINDO MANUALMENTE 
+	 * 
+	 * public void addProduct(int id, String name, BigDecimal price, short score, String image) { 
+	 * Product product = new
+	 * Product(); product.setId(id); product.setName(name); product.setPrice(price);
+	 * product.setScore(score); product.setImage(image);
+	 * 
+	 * proRepo.save(product); }
+	 */
+	
 }
